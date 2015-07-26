@@ -9,4 +9,5 @@
 
 # includes #################################
 
-include_recipe 'salt::minion'
+# This bullshit is not working
+# include_recipe 'salt::minion'
