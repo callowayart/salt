@@ -1,9 +1,12 @@
 #
-# Cookbook Name:: web
+# Cookbook Name:: callowayart
 # Recipe:: default
 #
-# Copyright (C) 2015 YOUR_NAME
+# Copyright (C) 2015 christian@callowayart
 #
 # All rights reserved - Do Not Redistribute
 #
-puts "hello"
+
+# includes #################################
+
+include_recipe 'salt::minion'
