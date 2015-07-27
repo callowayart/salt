@@ -1,0 +1,32 @@
+#!/bin/bash
+# christian@bloglovin
+# boostrap an integration minion
+
+# obligatory apt-get update
+sudo apt-get update -y
+
+# install curl
+sudo apt-get install -y curl, git
+
+# generate default rsa key for instance
+# NOTE: while minion accepts a default vagrant hey, which is insecure
+# this key will obviously not be, and it is the one that will
+# be used to identify with master
+ssh-keygen \
+  -f ~/.ssh/id_rsa \
+  -N '' \
+  -t rsa \
+  -b 4096 \
+  -C "auth@bloglovin.com"
+
+# share key with root
+sudo mkdir -p /root/.ssh \
+  && sudo cp /home/vagrant/.ssh/id_rsa* /root/.ssh
+
+# TODO: grab callowayart/salt repository 
+
+# boostrap salt-minion
+curl -L  https://bootstrap.saltstack.com | sudo sh -s -- git <%= node['salt']['version'] %>
+
+# finally kick salt-minion
+sudo service salt-minion restart
